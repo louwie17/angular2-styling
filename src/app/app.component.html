@@ -1,3 +1,6 @@
-<native></native>
-<emulated></emulated>
-<none></none>
+Theme:<input type="checkbox" [(ngModel)]="setTheme" name="theme" />
+<div [ngClass]="{'theme':setTheme}">
+  <native></native>
+  <emulated></emulated>
+  <none></none>
+</div>

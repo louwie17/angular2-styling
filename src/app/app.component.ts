@@ -25,6 +25,7 @@ export class NativeComponent { name = 'Native';}
   template: template,
   encapsulation: ViewEncapsulation.Emulated,
   styles: [`
+  :host-context(.theme) .nested p { color: purple; }
   :host .nested { padding: 10px; }
   :host /deep/ p {
 	  font-size: 20px;
@@ -47,4 +48,6 @@ export class NoneComponent { name = 'None'; }
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {}
+export class AppComponent {
+  private setTheme: Boolean = false;
+}
