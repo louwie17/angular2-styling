@@ -5,7 +5,7 @@ var template = `<div class="container">
     <p>{{ name }}</p>
     </div></div>`;
 
-var overlapStyle = `:host .nested { border: 1px solid black; }`;
+var overlapStyle = `:host-context(.theme) .nested p { color: purple; }`;
 
 @Component({
   selector: 'native',
@@ -24,8 +24,7 @@ export class NativeComponent { name = 'Native';}
   selector: 'emulated',
   template: template,
   encapsulation: ViewEncapsulation.Emulated,
-  styles: [`
-  :host-context(.theme) .nested p { color: purple; }
+  styles: [overlapStyle, `
   :host .nested { padding: 10px; }
   :host /deep/ p {
 	  font-size: 20px;
@@ -38,7 +37,7 @@ export class EmulatedComponent { name = 'emulated (default)';}
   selector: 'none',
   template: template,
   encapsulation: ViewEncapsulation.None,
-  styles: [
+  styles: [overlapStyle,
     `.container .nested { color: blue; }`
   ]
 })
@@ -47,6 +46,7 @@ export class NoneComponent { name = 'None'; }
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
+  // styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   private setTheme: Boolean = false;
